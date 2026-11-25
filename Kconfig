@@ -1,0 +1,42 @@
+mainmenu "Sensor reader-writer demonstration"
+
+source "Kconfig.zephyr"
+
+config APP_TEST_DURATION_MS
+    int "Observation window in milliseconds (0 runs continuously)"
+    range 0 600000
+    default 1000
+
+config APP_READER_HOLD_MS
+    int "Time each reader holds shared access, in milliseconds"
+    range 1 1000
+    default 3
+
+config APP_CONTROL_DELAY_MS
+    int "Control delay between reads, in milliseconds"
+    range 1 60000
+    default 5
+
+config APP_DIAGNOSTICS_DELAY_MS
+    int "Diagnostics delay between reads, in milliseconds"
+    range 1 60000
+    default 15
+
+config APP_TELEMETRY_DELAY_MS
+    int "Telemetry delay between reads, in milliseconds"
+    range 1 60000
+    default 25
+
+config APP_WRITER_DELAY_MS
+    int "Writer delay between updates, in milliseconds"
+    range 1 60000
+    default 13
+
+config APP_WRITER_FIELD_DELAY_MS
+    int "Delay between writer field stores, in milliseconds"
+    range 1 1000
+    default 2
+
+config APP_DISABLE_SYNC
+    bool "Bypass the sensor lock for the negative integration test"
+    depends on APP_TEST_DURATION_MS > 0
